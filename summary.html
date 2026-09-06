@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Enrollment System — Interview Masterclass Summary</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm 16mm 14mm;
+      @bottom-right {
+        content: counter(page);
+        font-family: 'Inter', sans-serif;
+        font-size: 8pt;
+        color: #64748b;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      line-height: 1.5;
+      font-size: 9pt;
+      background: #ffffff;
+    }
+
+    h1, h2, h3, h4 {
+      color: #0f172a;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    h1.doc-title {
+      font-size: 22pt;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+      margin-bottom: 3px;
+    }
+
+    .doc-subtitle {
+      font-size: 10pt;
+      color: #3b82f6;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .meta-bar {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 10px;
+      margin-bottom: 18px;
+      font-size: 8pt;
+      color: #64748b;
+    }
+
+    .meta-bar strong {
+      color: #1e293b;
+    }
+
+    h2 {
+      font-size: 13pt;
+      border-bottom: 1.5px solid #3b82f6;
+      padding-bottom: 4px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 10.5pt;
+      margin-top: 12px;
+      margin-bottom: 5px;
+      color: #1e293b;
+    }
+
+    h4 {
+      font-size: 9pt;
+      margin-top: 8px;
+      margin-bottom: 3px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    p {
+      margin-bottom: 7px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-left: 18px;
+      margin-bottom: 8px;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 2px;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 3.5px;
+      border-radius: 3px;
+      border: 1px solid #e2e8f0;
+    }
+
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      line-height: 1.4;
+      margin: 6px 0 10px 0;
+      overflow-x: auto;
+      border: 1px solid #1e293b;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      border: none;
+      font-size: inherit;
+    }
+
+    /* Syntax Highlighting */
+    .kwd { color: #f472b6; font-weight: 600; }
+    .fn { color: #60a5fa; }
+    .str { color: #4ade80; }
+    .cmnt { color: #94a3b8; font-style: italic; }
+    .type { color: #fbbf24; }
+    .prop { color: #38bdf8; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 8px 0 12px 0;
+      font-size: 8pt;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 5px 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1.5px 5px;
+      border-radius: 3px;
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-get { background: #dcfce7; color: #166534; }
+    .badge-post { background: #dbeafe; color: #1e40af; }
+    .badge-del { background: #fee2e2; color: #991b1b; }
+
+    .callout {
+      background: #eff6ff;
+      border-left: 3.5px solid #3b82f6;
+      padding: 7px 11px;
+      border-radius: 0 5px 5px 0;
+      margin: 8px 0;
+      font-size: 8pt;
+      color: #1e3a8a;
+    }
+
+    .callout-warning {
+      background: #fffbeb;
+      border-left-color: #f59e0b;
+      color: #92400e;
+    }
+
+    .qa-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 5px;
+      padding: 8px 10px;
+      margin-bottom: 8px;
+      break-inside: avoid;
+    }
+
+    .qa-q {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 3px;
+      font-size: 8.5pt;
+    }
+
+    .qa-a {
+      color: #334155;
+      font-size: 8pt;
+      line-height: 1.4;
+    }
+
+    .qa-spoken {
+      background: #f8fafc;
+      border-left: 3px solid #10b981;
+      padding: 5px 8px;
+      margin-top: 4px;
+      font-style: italic;
+      color: #065f46;
+      border-radius: 0 4px 4px 0;
+      font-size: 8pt;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .toc {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+    }
+
+    .toc-title {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #0f172a;
+      font-size: 9pt;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3px 14px;
+      font-size: 8pt;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- COVER / HEADER -->
+  <div class="doc-subtitle">Tissoura.ai Technical Assessment · Study & Masterclass Document</div>
+  <h1 class="doc-title">Student Enrollment System</h1>
+  <p style="font-size: 10pt; color: #475569; margin-bottom: 8px;">Technical Deep-Dive, Code Quotes, Integrity Defenses, and Verbatim Interview Responses</p>
+  
+  <div class="meta-bar">
+    <div><strong>Role:</strong> Senior Full-Stack TypeScript Engineer</div>
+    <div><strong>Stack:</strong> Fastify · Drizzle ORM · PostgreSQL (Local, No Docker) · React · TanStack Query · Zod</div>
+    <div><strong>Test Suite:</strong> 14/14 Real PostgreSQL Tests Passing</div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="toc">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-grid">
+      <div>1. Project Overview & Philosophy</div>
+      <div>6. Frontend Architecture & State</div>
+      <div>2. Folder & Layering Architecture</div>
+      <div>7. Consolidated Design Decisions</div>
+      <div>3. Database Schema & Integrity</div>
+      <div>8. Anticipated Interview Q&A (18 Scenarios)</div>
+      <div>4. Endpoints Deep Dive & Zero N+1</div>
+      <div>9. Quick Reference Cheat Sheet</div>
+      <div>5. Automated Test Suite Breakdown</div>
+      <div></div>
+    </div>
+  </div>
+
+  <!-- 1. PROJECT OVERVIEW -->
+  <h2>1. Project Overview & Architectural Philosophy</h2>
+  <p>
+    The <strong>Student Enrollment System</strong> is a full-stack, production-grade application engineered as a take-home technical deliverable for <strong>Tissoura.ai</strong>. It provides academic administrators with a unified dashboard and a hardened REST API to register students, define unique course subjects, enroll students across academic years with letter grades, and perform multi-dimensional filtered searches.
+  </p>
+  
+  <h3>Stack Selection & Justification</h3>
+  <ul>
+    <li><strong>Fastify (v5) + TypeScript:</strong> Fastify was mandated for its ultra-low routing overhead (~2-3x throughput of Express), native JSON schema encapsulation, and lifecycle hooks. Paired with strict TypeScript, it guarantees compile-time type safety across the entire request-response cycle.</li>
+    <li><strong>Drizzle ORM (v0.39):</strong> Unlike bulky ActiveRecord ORMs (Prisma, TypeORM), Drizzle functions as a zero-overhead TypeScript SQL dialect. Queries compile directly to transparent SQL without hidden engine runtimes, guaranteeing that complex joined queries execute without unwanted subqueries.</li>
+    <li><strong>PostgreSQL (v18, Local, No Docker):</strong> Provides enterprise ACID guarantees. Used directly via native node-postgres connection pooling. Relies on engine-level constraints (foreign keys, composite primary keys) to enforce data integrity and defend against concurrency anomalies.</li>
+    <li><strong>React + TanStack Query (v5):</strong> Declarative client-state management with key-based cache synchronization. Automatically invalidates queries on mutations without manual global state orchestration.</li>
+    <li><strong>Zod (v3.24):</strong> Validates payloads and query parameters at the HTTP boundary, inferring immutable TypeScript types directly into handlers and services.</li>
+  </ul>
+
+  <h3>Architecture Philosophy: Lightweight Modular Layering (Not DDD)</h3>
+  <p>
+    The system deliberately avoids Domain-Driven Design (DDD) overhead—such as Aggregate Roots, Value Object wrappers, Domain Events, and Abstract Repository Interfaces—which introduce excessive indirection for CRUD-oriented domains. Instead, it adopts a <strong>flat, modular layered architecture</strong> loosely inspired by NestJS conventions: routes handle wiring, handlers parse HTTP, services execute domain logic and SQL, DTOs govern schemas, helpers house pure utilities, and shared layers centralize error handling.
+  </p>
+
+  <!-- 2. FOLDER & FILE STRUCTURE -->
+  <h2>2. Folder & File Structure — Explained</h2>
+  <pre><code>student-enrollment/
+├── src/
+│   ├── app.ts                         <span class="cmnt"># Fastify application factory (CORS, error handler, routes)</span>
+│   ├── server.ts                      <span class="cmnt"># Server entrypoint with port listening & graceful shutdown</span>
+│   ├── db/
+│   │   ├── client.ts                  <span class="cmnt"># pg.Pool and Drizzle client instance + test client factory</span>
+│   │   ├── schema.ts                  <span class="cmnt"># Drizzle schemas (students, subjects, enrollments) + relations</span>
+│   │   ├── seed.ts                    <span class="cmnt"># Seeding script for demo data</span>
+│   │   ├── inspect.ts                 <span class="cmnt"># Rapid terminal inspection tool</span>
+│   │   └── migrations/                <span class="cmnt"># Generated SQL migrations (0000_overjoyed_micromacro.sql)</span>
+│   ├── modules/
+│   │   ├── students/                  <span class="cmnt"># Students domain module</span>
+│   │   │   ├── dto/students.dto.ts
+│   │   │   ├── handlers/students.handlers.ts
+│   │   │   ├── helpers/students.helpers.ts
+│   │   │   ├── routes/students.routes.ts
+│   │   │   └── services/students.service.ts
+│   │   ├── enrollments/               <span class="cmnt"># Enrollments domain module</span>
+│   │   │   ├── dto/enrollments.dto.ts
+│   │   │   ├── handlers/enrollments.handlers.ts
+│   │   │   ├── helpers/enrollments.helpers.ts
+│   │   │   ├── routes/enrollments.routes.ts
+│   │   │   └── services/enrollments.service.ts
+│   │   └── subjects/                  <span class="cmnt"># Subjects lookup domain module</span>
+│   │       ├── dto/subjects.dto.ts
+│   │       ├── handlers/subjects.handlers.ts
+│   │       ├── routes/subjects.routes.ts
+│   │       └── services/subjects.service.ts
+│   └── shared/
+│       ├── errors.ts                  <span class="cmnt"># AppError hierarchy (NotFoundError, ConflictError, etc.)</span>
+│       ├── error-handler.ts           <span class="cmnt"># Centralized Fastify error mapping (AppError/Zod -> HTTP)</span>
+│       └── pagination.ts              <span class="cmnt"># Pagination schemas and math helpers</span>
+├── tests/
+│   ├── setup.ts                       <span class="cmnt"># Test suite setup & TRUNCATE CASCADE beforeEach hook</span>
+│   ├── students.test.ts               <span class="cmnt"># 8 integration tests against real PostgreSQL</span>
+│   └── enrollments.test.ts            <span class="cmnt"># 6 integration tests against real PostgreSQL</span>
+└── frontend/                          <span class="cmnt"># React 18 + Vite + TanStack Query SPA</span></code></pre>
+
+  <h3>Layer Boundaries & Separation of Concerns</h3>
+  <ul>
+    <li><strong>routes/</strong>: Fastify plugins responsible purely for URI path mapping, HTTP method binding, and wiring handlers. No request parsing or business logic exists here.</li>
+    <li><strong>handlers/</strong>: The thin HTTP transport boundary. Receives Fastify request and reply objects, validates payloads via Zod, invokes the domain service, and sets response HTTP status codes (200, 201, 204). Strictly prohibited from issuing database queries.</li>
+    <li><strong>services/</strong>: The core domain and database access layer. The <em>only</em> layer allowed to interact with Drizzle ORM. Enforces business rules and throws typed <code>AppError</code> subclasses when invariants fail.</li>
+    <li><strong>dto/</strong>: Declares Zod validation schemas and derives static TypeScript types (<code>z.infer</code>) for bodies, queries, and parameters.</li>
+    <li><strong>helpers/</strong>: Pure, stateless utility functions (e.g. grade threshold calculation, academic year range checks). No database or external side effects.</li>
+    <li><strong>shared/</strong>: Framework-wide cross-cutting concerns: error classes, centralized error dispatching, and pagination metadata builders.</li>
+  </ul>
+
+  <div class="callout">
+    <strong>Key Interview Files (Top 6):</strong>
+    <ol>
+      <li><code>src/db/schema.ts</code>: Declares database columns, composite primary key, and relational joins.</li>
+      <li><code>src/modules/enrollments/services/enrollments.service.ts</code>: Implements concurrency-safe insert catching Postgres code 23505.</li>
+      <li><code>src/modules/students/services/students.service.ts</code>: Implements single joined query filtering and zero N+1 relational fetches.</li>
+      <li><code>src/shared/error-handler.ts</code>: Centralizes exception translation into RFC-compliant JSON responses.</li>
+      <li><code>src/shared/errors.ts</code>: Encapsulates domain error semantics with dedicated HTTP status codes.</li>
+      <li><code>src/app.ts</code>: Assembles Fastify plugins, CORS, global error handling, and routing in an isolated factory.</li>
+    </ol>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 3. DATABASE SCHEMA -->
+  <h2>3. Database Schema & Integrity Guarantees</h2>
+  <p>The schema is declared in <code>src/db/schema.ts</code> using Drizzle ORM's PostgreSQL core primitives:</p>
+
+  <pre><code><span class="kwd">export const</span> students = <span class="fn">pgTable</span>(<span class="str">"students"</span>, {
+  id: <span class="fn">uuid</span>(<span class="str">"id"</span>).<span class="fn">defaultRandom</span>().<span class="fn">primaryKey</span>(),
+  name: <span class="fn">text</span>(<span class="str">"name"</span>).<span class="fn">notNull</span>(),
+  createdAt: <span class="fn">timestamp</span>(<span class="str">"created_at"</span>, { withTimezone: <span class="kwd">true</span> }).<span class="fn">defaultNow</span>().<span class="fn">notNull</span>(),
+});
+
+<span class="kwd">export const</span> subjects = <span class="fn">pgTable</span>(<span class="str">"subjects"</span>, {
+  id: <span class="fn">uuid</span>(<span class="str">"id"</span>).<span class="fn">defaultRandom</span>().<span class="fn">primaryKey</span>(),
+  name: <span class="fn">text</span>(<span class="str">"name"</span>).<span class="fn">notNull</span>().<span class="fn">unique</span>(),
+});
+
+<span class="kwd">export const</span> enrollments = <span class="fn">pgTable</span>(
+  <span class="str">"enrollments"</span>,
+  {
+    studentId: <span class="fn">uuid</span>(<span class="str">"student_id"</span>).<span class="fn">notNull</span>().<span class="fn">references</span>(() =&gt; students.id, { onDelete: <span class="str">"cascade"</span> }),
+    subjectId: <span class="fn">uuid</span>(<span class="str">"subject_id"</span>).<span class="fn">notNull</span>().<span class="fn">references</span>(() =&gt; subjects.id, { onDelete: <span class="str">"restrict"</span> }),
+    year: <span class="fn">integer</span>(<span class="str">"year"</span>).<span class="fn">notNull</span>(),
+    grade: <span class="fn">varchar</span>(<span class="str">"grade"</span>, { length: 2 }).<span class="fn">notNull</span>(),
+    createdAt: <span class="fn">timestamp</span>(<span class="str">"created_at"</span>, { withTimezone: <span class="kwd">true</span> }).<span class="fn">defaultNow</span>().<span class="fn">notNull</span>(),
+  },
+  (table) =&gt; [
+    <span class="fn">primaryKey</span>({ columns: [table.studentId, table.subjectId, table.year] }),
+  ]
+);</code></pre>
+
+  <h3>Critical Architectural Rules in the Schema:</h3>
+  <ol>
+    <li>
+      <strong>Composite Primary Key <code>(student_id, subject_id, year)</code>:</strong>
+      <br/>Enforces at the database storage engine level that a student can only have <em>one</em> enrollment record per subject in a given academic year.
+      <br/><em>Why is year part of the key?</em> Academic curricula allow a student who failed or withdrew in 2023 to legitimately retake the subject in 2024.
+      <br/><em>Why is grade NOT part of the key?</em> A grade is a mutable attribute of an enrollment. If grade were in the primary key, a student could have multiple conflicting grades (e.g. an 'A' and an 'F') for the identical subject in the identical year.
+    </li>
+    <li>
+      <strong>Foreign Key <code>onDelete</code> Rules:</strong>
+      <br/>• <code>studentId -&gt; onDelete: 'cascade'</code>: Enrollments represent personal academic history. When a student record is deleted, their associated enrollment rows are deleted atomically via cascade, preventing orphan rows.
+      <br/>• <code>subjectId -&gt; onDelete: 'restrict'</code>: Course catalog subjects must be protected against accidental deletion if students have enrolled in them.
+    </li>
+    <li>
+      <strong>UUIDs vs. Auto-Increment Integers:</strong>
+      <br/>UUIDs (<code>defaultRandom()</code>) eliminate enumeration vulnerabilities, prevent competitors from inferring total system volume, and permit client-side or distributed ID generation without coordination.
+    </li>
+  </ol>
+
+  <!-- 4. ENDPOINTS -->
+  <h2>4. Endpoints — Explained One by One</h2>
+
+  <h3>1. GET /students</h3>
+  <ul>
+    <li><strong>Request Query:</strong> <code>page</code> (int, default 1), <code>limit</code> (int, default 10), <code>subject</code> (optional string), <code>minGrade</code> (optional: 'A'|'B'|'C'|'D'|'F'). Validated by <code>studentFilterQuerySchema</code>.</li>
+    <li><strong>Success Response:</strong> <code>200 OK</code> with <code>{ data: Student[], meta: PaginationMeta }</code>.</li>
+    <li><strong>Error Cases:</strong> <code>400 ValidationError</code> if page/limit are negative or minGrade is invalid.</li>
+    <li><strong>Exact Service Implementation (Single Joined Query):</strong>
+      <pre><code><span class="cmnt">// 1. Total count of distinct students matching filter</span>
+const [countResult] = await this.db
+  .select({ total: sql&lt;number&gt;`count(distinct ${students.id})::int` })
+  .from(students)
+  .innerJoin(enrollments, eq(students.id, enrollments.studentId))
+  .innerJoin(subjects, eq(enrollments.subjectId, subjects.id))
+  .where(and(...filterConditions));
+
+<span class="cmnt">// 2. Single joined select with distinct on student id</span>
+const rows = await this.db
+  .selectDistinctOn([students.id], { id: students.id, name: students.name, createdAt: students.createdAt })
+  .from(students)
+  .innerJoin(enrollments, eq(students.id, enrollments.studentId))
+  .innerJoin(subjects, eq(enrollments.subjectId, subjects.id))
+  .where(and(...filterConditions))
+  .orderBy(students.id)
+  .limit(limit).offset(offset);</code></pre>
+    </li>
+    <li><strong>Why Zero N+1:</strong> A student with 5 qualifying enrollments is resolved in a single <code>INNER JOIN</code> with <code>selectDistinctOn</code>, producing an exact single student row without separate child queries.</li>
+  </ul>
+
+  <h3>2. POST /students</h3>
+  <ul>
+    <li><strong>Request Body:</strong> <code>{ "name": "Alice Johnson" }</code> (min 1 char, trimmed). Schema: <code>createStudentSchema</code>.</li>
+    <li><strong>Success Response:</strong> <code>201 Created</code> returning <code>{ id, name, createdAt }</code>.</li>
+    <li><strong>Error Cases:</strong> <code>400 ValidationError</code> if name is empty, missing, or whitespace.</li>
+  </ul>
+
+  <h3>3. DELETE /students/:id</h3>
+  <ul>
+    <li><strong>Request Params:</strong> <code>id</code> (UUID). Schema: <code>studentIdParamSchema</code>.</li>
+    <li><strong>Success Response:</strong> <code>204 No Content</code>.</li>
+    <li><strong>Error Cases:</strong> <code>404 NotFoundError</code> if student ID does not exist; <code>400 ValidationError</code> if ID is not a valid UUID.</li>
+    <li><strong>Cascade Action:</strong> Database triggers cascade deletion on <code>enrollments</code>.</li>
+  </ul>
+
+  <div class="page-break"></div>
+
+  <h3>4. POST /students/:id/enroll (Concurrency & Race-Condition Safe)</h3>
+  <ul>
+    <li><strong>Request:</strong> Param <code>id</code> (UUID). Body: <code>{ subjectId: UUID, year: int (1990-2100), grade: 'A'|'B'|'C'|'D'|'F' }</code>.</li>
+    <li><strong>Success Response:</strong> <code>201 Created</code> returning <code>{ studentId, subjectId, year, grade, createdAt }</code>.</li>
+    <li><strong>Error Cases:</strong> <code>404 NotFoundError</code> (missing student or subject), <code>400 ValidationError</code> (invalid grade/year), <code>409 ConflictError</code> (duplicate enrollment).</li>
+    <li><strong>Exact Service Implementation:</strong>
+      <pre><code><span class="cmnt">// 1. Check student and subject existence</span>
+const student = await this.db.query.students.findFirst({ where: eq(students.id, studentId) });
+if (!student) throw new NotFoundError(`Student with ID '${studentId}' not found`);
+
+const subject = await this.db.query.subjects.findFirst({ where: eq(subjects.id, data.subjectId) });
+if (!subject) throw new NotFoundError(`Subject with ID '${data.subjectId}' not found`);
+
+<span class="cmnt">// 2. Attempt insert and catch Postgres unique violation error code 23505</span>
+try {
+  const [newEnrollment] = await this.db.insert(enrollments).values({
+    studentId, subjectId: data.subjectId, year: data.year, grade: data.grade,
+  }).returning();
+  return newEnrollment;
+} catch (error: any) {
+  if (error?.code === "23505") {
+    throw new ConflictError(`Student is already enrolled in ${subject.name} for year ${data.year}`);
+  }
+  throw error;
+}</code></pre>
+    </li>
+    <li><strong>Concurrency Defense:</strong> Rather than relying on an inherently racy check-then-insert pattern (where two concurrent requests can both pass existence checks before either inserts), we rely on PostgreSQL's composite primary key index. Concurrent duplicate inserts trigger code <code>23505</code>, mapped cleanly to <code>409 Conflict</code>.</li>
+  </ul>
+
+  <h3>5. GET /students/:id (Zero N+1 Relational Loading)</h3>
+  <ul>
+    <li><strong>Request:</strong> Param <code>id</code> (UUID).</li>
+    <li><strong>Success Response:</strong> <code>200 OK</code> with student metadata and nested <code>enrollments</code> containing joined <code>subjectName</code>.</li>
+    <li><strong>Error Cases:</strong> <code>404 NotFoundError</code> if student does not exist.</li>
+    <li><strong>Exact Service Implementation:</strong>
+      <pre><code>const student = await this.db.query.students.findFirst({
+  where: eq(students.id, id),
+  with: {
+    enrollments: {
+      with: { subject: true },
+      orderBy: [desc(enrollments.year)],
+    },
+  },
+});
+if (!student) throw new NotFoundError(`Student with ID '${id}' not found`);</code></pre>
+    </li>
+    <li><strong>Why Zero N+1:</strong> Drizzle's relational query compiles into a single SQL statement that joins the subjects table directly on <code>enrollments.subject_id = subjects.id</code>. It never issues a secondary query per enrollment.</li>
+  </ul>
+
+  <!-- 5. TESTS -->
+  <h2>5. Automated Test Suite — 14 Real Postgres Tests</h2>
+  <p>Tests are located in <code>tests/students.test.ts</code> and <code>tests/enrollments.test.ts</code>, executed via Vitest against <code>student_enrollment_test</code> using Fastify's native <code>app.inject()</code>.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>Test Description</th>
+        <th>Asserted Status</th>
+        <th>Failure Guarded Against</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Happy path student creation</td>
+        <td><code>201 Created</code></td>
+        <td>Ensures valid records persist and return generated UUID and timestamp.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Validation on empty or missing name</td>
+        <td><code>400 Bad Request</code></td>
+        <td>Prevents empty or whitespace-only students from polluting the database.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Filter by subject & minGrade (joined)</td>
+        <td><code>200 OK</code></td>
+        <td>Verifies single joined query correctly filters students meeting grade threshold.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Filter with no matching records</td>
+        <td><code>200 OK (empty)</code></td>
+        <td>Guarantees graceful response when filters match zero records.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Single query student + enrollments + subject</td>
+        <td><code>200 OK</code></td>
+        <td>Verifies zero N+1 relational fetching of nested enrollments.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Get non-existent student ID</td>
+        <td><code>404 Not Found</code></td>
+        <td>Guarantees missing IDs return RFC-compliant 404 rather than empty objects.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Delete student & cascade enrollments</td>
+        <td><code>204 No Content</code></td>
+        <td>Verifies cascade deletion clears child enrollments without foreign key failure.</td>
+      </tr>
+      <tr>
+        <td><code>students.test.ts</code></td>
+        <td>Delete non-existent student ID</td>
+        <td><code>404 Not Found</code></td>
+        <td>Prevents silent no-ops when deleting nonexistent resources.</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Enroll student happy path</td>
+        <td><code>201 Created</code></td>
+        <td>Verifies valid enrollment persistence and returned payload.</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Enroll with non-existent student</td>
+        <td><code>404 Not Found</code></td>
+        <td>Guarantees foreign key references are validated before insertion.</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Enroll with non-existent subject</td>
+        <td><code>404 Not Found</code></td>
+        <td>Prevents orphan enrollments against non-existent subjects.</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Validation on invalid grade or year</td>
+        <td><code>400 Bad Request</code></td>
+        <td>Rejects invalid grades (e.g. 'Z') and unrealistic years (e.g. 1800).</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Sequential duplicate enrollment</td>
+        <td><code>409 Conflict</code></td>
+        <td>Ensures duplicate <code>(studentId, subjectId, year)</code> returns 409 Conflict.</td>
+      </tr>
+      <tr>
+        <td><code>enrollments.test.ts</code></td>
+        <td>Concurrent enrollment (Promise.all race)</td>
+        <td><code>[201, 409]</code></td>
+        <td>Simultaneously fires two identical requests; verifies exactly 1 succeeds and 1 conflicts.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>The Concurrency Test Explained Step-by-Step</h3>
+  <pre><code>const [res1, res2] = await Promise.all([
+  app.inject({ method: "POST", url: `/students/${student.id}/enroll`, payload }),
+  app.inject({ method: "POST", url: `/students/${student.id}/enroll`, payload }),
+]);
+const statusCodes = [res1.statusCode, res2.statusCode].sort();
+expect(statusCodes).toEqual([201, 409]);</code></pre>
+  <p>
+    <strong>What happens step-by-step:</strong> Both requests enter Fastify concurrently. Both successfully pass the initial <code>findFirst</code> checks for student and subject existence. Both reach the <code>db.insert(enrollments)</code> statement nearly simultaneously. PostgreSQL executes transaction isolation on the primary key B-Tree index: the first insert acquires the lock and succeeds (status <code>201</code>); the second insert encounters a primary key violation, raising PostgreSQL error <code>23505</code>. The service's catch block intercepts <code>23505</code>, throws <code>ConflictError</code>, and Fastify replies with status <code>409</code>. Exactly one row exists in the database.
+  </p>
+
+  <h3>Test Isolation via <code>vitest.config.ts</code> & <code>setup.ts</code></h3>
+  <p>
+    Test isolation is achieved by configuring <code>test.env</code> in <code>vitest.config.ts</code>:
+    <code>DATABASE_URL: process.env.DATABASE_TEST_URL || "postgresql://postgres@localhost:5432/student_enrollment_test"</code>.
+    This injects the test database URL into the worker process <em>before</em> any ESM modules are linked. Inside <code>tests/setup.ts</code>, a <code>beforeEach</code> hook executes:
+    <code>TRUNCATE TABLE "enrollments", "students", "subjects" CASCADE;</code>, guaranteeing complete test hermeticism in ~2 seconds.
+  </p>
+
+  <div class="page-break"></div>
+
+  <!-- 6. FRONTEND -->
+  <h2>6. Frontend Architecture & TanStack Query State</h2>
+  <p>
+    The frontend is an SPA built with <strong>React 18 + Vite + TanStack Query (v5)</strong>. It prioritizes clean UX, responsive styling without heavy CSS frameworks, and reactive cache invalidation.
+  </p>
+
+  <h3>Components & Responsibilities</h3>
+  <ul>
+    <li><strong>StudentsListPage (<code>pages/StudentsListPage.tsx</code>):</strong> Main dashboard view. Coordinates filter states, search inputs, pagination controls, and modal toggles.</li>
+    <li><strong>StudentDetailPage (<code>pages/StudentDetailPage.tsx</code>):</strong> Student profile view. Displays student metadata and an enrolled subjects table showing academic year, grade badge, and enrollment date.</li>
+    <li><strong>FilterBar (<code>components/FilterBar.tsx</code>):</strong> Filter controls with dynamic subject dropdown (loaded via <code>useSubjects</code>) and minimum grade threshold selector.</li>
+    <li><strong>StudentsTable (<code>components/StudentsTable.tsx</code>):</strong> Displays paginated student rows with quick actions ("View Details", "+ Enroll", "Delete").</li>
+    <li><strong>AddStudentModal (<code>components/AddStudentModal.tsx</code>):</strong> Modal form to create a new student with live error banners.</li>
+    <li><strong>EnrollModal (<code>components/EnrollModal.tsx</code>):</strong> Modal form to enroll a student. Dynamically maps HTTP 409 conflict errors to inline warning banners.</li>
+    <li><strong>Badge (<code>components/Badge.tsx</code>):</strong> Renders color-coded grade pills (Grade A: Emerald, Grade B: Blue, Grade C: Amber, Grade D: Orange, Grade F: Red).</li>
+    <li><strong>Pagination (<code>components/Pagination.tsx</code>):</strong> Displays current page, total records, and previous/next page navigation buttons.</li>
+  </ul>
+
+  <h3>TanStack Query Cache Key Strategy & Mutations</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Hook</th>
+        <th>Query Key</th>
+        <th>Behavior & Invalidation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>useStudents(filters)</code></td>
+        <td><code>['students', { page, limit, subject, minGrade }]</code></td>
+        <td>Refetches automatically whenever page, subject, or minGrade changes. Stale time: 30s.</td>
+      </tr>
+      <tr>
+        <td><code>useStudent(id)</code></td>
+        <td><code>['student', id]</code></td>
+        <td>Queries single student details with nested enrollments. Enabled only when ID is present.</td>
+      </tr>
+      <tr>
+        <td><code>useSubjects()</code></td>
+        <td><code>['subjects']</code></td>
+        <td>Caches academic subjects for dropdowns with 5-minute stale time.</td>
+      </tr>
+      <tr>
+        <td><code>useCreateStudent()</code></td>
+        <td>Mutation</td>
+        <td>On success: calls <code>queryClient.invalidateQueries({ queryKey: ['students'] })</code>.</td>
+      </tr>
+      <tr>
+        <td><code>useDeleteStudent()</code></td>
+        <td>Mutation</td>
+        <td>On success: invalidates <code>['students']</code>, updating the list immediately.</td>
+      </tr>
+      <tr>
+        <td><code>useEnrollStudent(id)</code></td>
+        <td>Mutation</td>
+        <td>On success: invalidates both <code>['student', id]</code> and <code>['students']</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 7. DESIGN DECISIONS & TRADE-OFFS -->
+  <h2>7. Consolidated Design Decisions & Trade-offs</h2>
+  
+  <div class="callout">
+    <strong>1. Cascade vs. Restrict on Delete:</strong>
+    <br/>Enrollments belong strictly to a student's personal educational record. When a student is removed, cascading deletion clears child enrollments atomically. However, subjects belong to the school catalog; deleting a subject is restricted if students are actively enrolled in it to prevent corrupting academic transcripts.
+  </div>
+
+  <div class="callout">
+    <strong>2. Single Joined Queries vs. Relational Zero N+1:</strong>
+    <br/>• For <code>GET /students/:id</code>: Drizzle's relational API generates a single SQL query with joins, mapping nested subjects into memory in a single trip.
+    <br/>• For <code>GET /students?subject=...&minGrade=...</code>: We utilize an explicit <code>INNER JOIN</code> across students, enrollments, and subjects with <code>selectDistinctOn</code> and a single distinct count query. This prevents issuing N queries for N students.
+  </div>
+
+  <div class="callout">
+    <strong>3. Race-Condition Defense via Engine Constraints:</strong>
+    <br/>Application-level "check-then-insert" checks are fundamentally racy under concurrent requests. We enforce a DB-level composite primary key <code>(student_id, subject_id, year)</code> and catch Postgres unique violation error code <code>23505</code> in the service layer, translating it into HTTP 409 Conflict.
+  </div>
+
+  <div class="callout callout-warning">
+    <strong>What I would do differently with more time (Interview Self-Awareness):</strong>
+    <ul>
+      <li><strong>Soft Deletes:</strong> In a real production university system, students and enrollments are rarely hard-deleted. Adding a <code>deleted_at</code> timestamp column with Drizzle filters would support regulatory auditing.</li>
+      <li><strong>OpenAPI / Swagger Generation:</strong> Integrate <code>@fastify/swagger</code> and <code>zod-to-json-schema</code> to automatically generate interactive Swagger UI documentation directly from our Zod DTOs.</li>
+      <li><strong>Authentication & Role-Based Access Control (RBAC):</strong> Add Fastify plugins for JWT or session authentication, distinguishing "Admin" (create/delete) from "Student" (view only).</li>
+    </ul>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 8. ANTICIPATED INTERVIEW QUESTIONS & ANSWERS -->
+  <h2>8. Anticipated Interview Questions & Model Answers</h2>
+
+  <div class="qa-block">
+    <div class="qa-q">Q1: "Walk me through what happens when I hit POST /students/:id/enroll twice at the same time."</div>
+    <div class="qa-a">
+      Both HTTP requests hit Fastify in parallel and pass Zod payload validation. Handlers call <code>enrollmentsService.enrollStudent</code>. Both requests check whether the student and subject exist in PostgreSQL—both checks return true. Next, both requests execute <code>INSERT INTO enrollments</code> simultaneously. PostgreSQL serializes row insertion on the composite primary key index <code>(student_id, subject_id, year)</code>. One request acquires the write lock first and inserts successfully, returning status 201. The second request encounters a unique constraint violation and PostgreSQL raises error code <code>23505</code>. Our service catch block inspects <code>error.code === '23505'</code>, wraps it into a domain <code>ConflictError</code>, and Fastify's centralized error handler transforms it into an HTTP 409 Conflict response.
+    </div>
+    <div class="qa-spoken">"I intentionally avoided check-then-insert because it's vulnerable to race conditions under load. Instead, I rely on the database composite primary key constraint and explicitly catch Postgres error code 23505 in the service layer."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q2: "Why is grade not part of the composite primary key?"</div>
+    <div class="qa-a">
+      Primary keys must uniquely identify the entity—which in this domain is the student's enrollment in a subject for an academic year. The grade is a mutable attribute of that enrollment, not an identifier. If grade were part of the primary key, the composite key would be <code>(studentId, subjectId, year, grade)</code>. That would allow a student to simultaneously have an enrollment with grade 'A' and another with grade 'F' for the exact same subject in the exact same year.
+    </div>
+    <div class="qa-spoken">"Grade is a property of the enrollment, not its identity. If grade were in the key, a student could hold multiple contradictory grades for the same course in the same year."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q3: "How do you know GET /students/:id doesn't do N+1 queries — show me."</div>
+    <div class="qa-a">
+      In <code>src/modules/students/services/students.service.ts</code>, we use Drizzle's relational query API: <code>db.query.students.findFirst({ where: eq(students.id, id), with: { enrollments: { with: { subject: true } } } })</code>. Drizzle translates this into an optimized SQL query using joins and json aggregation in a single round-trip. At no point is there a <code>for</code> loop or a secondary <code>db.select().from(subjects).where(...)</code> per enrollment.
+    </div>
+    <div class="qa-spoken">"I use Drizzle's relational findFirst with nested relations. It compiles into a single SQL statement that fetches the student, enrollments, and subject names in one round-trip."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q4: "What would you change if this needed to support 10,000 students?"</div>
+    <div class="qa-a">
+      For 10,000 students, the current PostgreSQL schema and query architecture easily handle the load because queries use index scans on UUID PKs and composite indexes. However, I would: (1) Add a composite B-Tree index on <code>(subject_id, grade)</code> to optimize the joined filter query; (2) Implement cursor-based keyset pagination (e.g. <code>WHERE id &gt; :lastId</code>) instead of <code>OFFSET</code> pagination, which degrades at high page depths; (3) Add connection pool scaling in <code>pg.Pool</code>; (4) Add Redis caching for frequently accessed subject catalogs.
+    </div>
+    <div class="qa-spoken">"The composite primary key already indexes the join. For 10,000 students, I would add a composite index on (subject_id, grade) and switch from OFFSET pagination to keyset cursor pagination."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q5: "Why UUID instead of auto-increment integers?"</div>
+    <div class="qa-a">
+      UUID v4 (<code>defaultRandom()</code>) avoids predictable ID enumeration attacks (where an attacker iterates <code>/students/1</code>, <code>/students/2</code>). It prevents external parties from guessing total database volume. It also allows IDs to be safely generated by client distributed services or seed scripts without requiring round-trip database sequence locks.
+    </div>
+    <div class="qa-spoken">"UUIDs prevent sequential enumeration attacks, protect business metrics from being guessed, and support distributed generation."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q6: "Why did you separate handlers from services instead of putting logic in the route directly?"</div>
+    <div class="qa-a">
+      Separation of concerns. Routes only know about Fastify URL endpoints. Handlers act as the HTTP transport layer: they parse headers, validate Zod schemas, invoke services, and format status codes. Services contain pure business rules and database queries without any concept of Fastify <code>request</code> or <code>reply</code> objects. This makes services directly unit-testable and reusable across background queues, CLI scripts, or alternative transports (e.g. gRPC or WebSockets) without mocking HTTP contexts.
+    </div>
+    <div class="qa-spoken">"Handlers manage HTTP transport and validation; services manage business logic and SQL. This decouples database operations from Fastify, making services reusable and testable without HTTP mocks."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q7: "What happens if Zod validation fails — walk me through the full error path."</div>
+    <div class="qa-a">
+      When a request hits a handler (e.g. <code>createStudentHandler</code>), it calls <code>createStudentSchema.parse(request.body)</code>. If validation fails, Zod throws a <code>ZodError</code> containing an array of validation issues. The handler does not catch this error; it bubbles up to Fastify's centralized <code>setErrorHandler(errorHandler)</code> in <code>src/shared/error-handler.ts</code>. The error handler recognizes <code>error instanceof ZodError</code>, formats the path and issue message, and replies with an HTTP 400 Bad Request and structured JSON: <code>{ statusCode: 400, error: 'ValidationError', message: 'Request validation failed', issues: [...] }</code>.
+    </div>
+    <div class="qa-spoken">"Zod throws a ZodError, which bubbles to Fastify's centralized errorHandler. It maps the error to a clean 400 Bad Request with field-level issues."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q8: "How would you add role-based access control (RBAC) without a rewrite?"</div>
+    <div class="qa-a">
+      I would implement a Fastify <code>preHandler</code> hook or plugin (e.g. <code>verifyRole(['ADMIN'])</code>). Fastify's plugin architecture allows scoping hooks to specific route prefixes or passing them as preHandler options in route definitions: <code>fastify.delete('/students/:id', { preHandler: verifyRole(['ADMIN']) }, studentsHandler.deleteStudent)</code>. Because our handlers and services don't handle auth concerns, zero business logic needs modification.
+    </div>
+    <div class="qa-spoken">"I would use Fastify preHandler hooks on route definitions. Because handlers and services are cleanly decoupled, no service logic needs to change."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q9: "Why cascade on student delete but restrict on subject delete?"</div>
+    <div class="qa-a">
+      An enrollment represents a student's personal participation record. If a student is purged from the database, leaving orphan enrollment records breaks referential integrity. In contrast, academic subjects belong to the institutional catalog. Deleting a subject while students have historical grades in it would destroy legitimate transcript records. Therefore, subject deletion must be restricted if active enrollments exist.
+    </div>
+    <div class="qa-spoken">"Enrollments are lifecycle-bound to students, so deleting a student cascades. Subjects are institutional catalog items, so deleting them is restricted if student records reference them."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q10: "How does the grade-ranking helper work in SQL without custom PostgreSQL enums?"</div>
+    <div class="qa-a">
+      In <code>src/modules/students/helpers/students.helpers.ts</code>, the <code>getGradesMeetingMinimum(minGrade)</code> pure helper maps letter grades to rank orders (A:5, B:4, C:3, D:2, F:1). When a user requests <code>minGrade=B</code>, the helper returns <code>['A', 'B']</code>. The service then queries PostgreSQL using Drizzle's <code>inArray(enrollments.grade, ['A', 'B'])</code>. This translates to standard SQL <code>IN ('A', 'B')</code>, which is simple, fully indexable, and avoids complex PostgreSQL <code>ENUM</code> cast overhead.
+    </div>
+    <div class="qa-spoken">"The helper translates minGrade 'B' into an array ['A', 'B'], and Drizzle executes a standard SQL IN ('A', 'B') query, which is index-friendly."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q11: "What happens if a student has multiple enrollments matching the filter — why don't they appear twice?"</div>
+    <div class="qa-a">
+      If a student has grade 'A' in Math 2023 and grade 'A' in Math 2024, a naive join returns two rows for that student. We prevent duplicates in two places: (1) In the count query, we execute <code>count(distinct students.id)</code>; (2) In the data query, we use PostgreSQL's native <code>selectDistinctOn([students.id])</code> ordered by <code>students.id</code>. This guarantees that each matching student appears exactly once in the paginated results.
+    </div>
+    <div class="qa-spoken">"I used PostgreSQL selectDistinctOn([students.id]) and count(distinct students.id) in the joined query so each matching student only appears once."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q12: "Why did you use Fastify instead of Express or NestJS?"</div>
+    <div class="qa-a">
+      Express is minimalist but lacks modern async ergonomics and has higher routing overhead. NestJS provides good structure but introduces heavy abstractions (decorators, metadata reflection, DI containers) that constitute over-engineering for a focused take-home. Fastify hits the exact sweet spot: modern async/await first, 2-3x faster than Express, built-in schema compilation, and clean encapsulation via plugins without runtime magic.
+    </div>
+    <div class="qa-spoken">"Fastify gives the performance and schema-driven rigor of modern TypeScript without NestJS's heavy dependency-injection boilerplate."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q13: "Why Drizzle ORM instead of Prisma or TypeORM?"</div>
+    <div class="qa-a">
+      Prisma relies on a separate Rust binary engine with overhead, generates large schema files, and makes complex joins or distinct counts clunky. TypeORM relies heavily on experimental decorators and has known maintenance issues. Drizzle ORM is pure TypeScript, matches SQL directly, produces zero hidden queries, and allows full relational loading (zero N+1) alongside raw SQL escape hatches.
+    </div>
+    <div class="qa-spoken">"Drizzle gives SQL-like transparency with full TypeScript type safety, zero runtime engine bloat, and predictable query performance."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q14: "How did you solve the ESM import hoisting issue in Vitest during testing?"</div>
+    <div class="qa-a">
+      In ECMAScript Modules (ESM), <code>import</code> statements are hoisted and evaluated before top-level runtime code. Setting <code>process.env.DATABASE_URL = ...</code> inside a setup file happens after imported modules (like the database client) have already evaluated. I solved this by configuring Vitest's native <code>test.env</code> in <code>vitest.config.ts</code>. Vitest injects the test database URL into the worker process environment before any source files or setup files are loaded.
+    </div>
+    <div class="qa-spoken">"In ESM, imports are hoisted before runtime statements. I configured test.env in vitest.config.ts so the test environment variable is set before any module loads."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q15: "How does TanStack Query keep the UI in sync without Redux or Zustand?"</div>
+    <div class="qa-a">
+      Server state is fundamentally different from client UI state. TanStack Query treats the backend as the single source of truth. By keying queries with <code>['students', filters]</code>, any filter change triggers a background fetch. When mutations run (like <code>useEnrollStudent</code>), the <code>onSuccess</code> handler calls <code>queryClient.invalidateQueries({ queryKey: ['student', studentId] })</code>. TanStack Query marks the cached data as stale and refetches immediately, keeping the UI synchronized with zero manual state duplication.
+    </div>
+    <div class="qa-spoken">"TanStack Query manages server cache rather than client state. Mutations invalidate query keys on success, triggering automatic background refetches."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q16: "Why use TRUNCATE CASCADE in beforeEach instead of transactional rollbacks?"</div>
+    <div class="qa-a">
+      While transaction rollback is fast, it requires sharing a single transactional database client across the test runner and the Fastify app, which complicates testing endpoints that execute their own transactions or connection pool operations. Fastify integration tests run against real HTTP endpoints via <code>app.inject()</code>. Using <code>TRUNCATE TABLE ... CASCADE</code> resets real database tables in single-digit milliseconds without coupling Fastify's pool to test transactions.
+    </div>
+    <div class="qa-spoken">"TRUNCATE CASCADE tests the exact connection pooling Fastify uses in production, resetting state in milliseconds without mocking transactions."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q17: "How would you handle database migrations in a zero-downtime production deployment?"</div>
+    <div class="qa-a">
+      I would follow the Expand/Contract migration pattern. For schema changes: (1) Expand phase: apply additive migrations (e.g. adding nullable columns or new tables) using <code>drizzle-kit migrate</code> before deploying new backend code; (2) Deploy the updated backend code that utilizes the new schema; (3) Contract phase: once the new backend is healthy, remove deprecated columns or constraints in a subsequent migration.
+    </div>
+    <div class="qa-spoken">"I use the Expand/Contract pattern: apply additive schema changes first, deploy the code, and clean up deprecated columns in a follow-up migration."</div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">Q18: "How does the pagination logic handle edge cases like negative pages or excessive limits?"</div>
+    <div class="qa-a">
+      The Zod pagination schema enforces integer validation with bounds: <code>page: z.coerce.number().int().positive().default(1)</code> and <code>limit: z.coerce.number().int().positive().max(100).default(10)</code>. Invalid or negative values fail validation with 400. In <code>src/shared/pagination.ts</code>, <code>totalPages</code> is computed as <code>Math.ceil(total / limit) || 1</code>, and <code>hasNextPage</code> / <code>hasPrevPage</code> boolean flags prevent clients from navigating out of bounds.
+    </div>
+    <div class="qa-spoken">"Zod enforces positive integers and caps limit at 100 at the HTTP boundary, while our pagination helper computes safe totalPages and boolean bounds flags."</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <!-- 9. CHEAT SHEET -->
+  <h2>9. Quick Reference Cheat Sheet</h2>
+
+  <h3>Core Operational Commands</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Action</th>
+        <th>Command</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Start All (Dev)</strong></td>
+        <td><code>pnpm dev</code></td>
+        <td>Concurrently starts Fastify on :3000 and Vite React on :5173.</td>
+      </tr>
+      <tr>
+        <td><strong>Run Tests</strong></td>
+        <td><code>pnpm test</code></td>
+        <td>Executes 14 Vitest integration tests against real PostgreSQL.</td>
+      </tr>
+      <tr>
+        <td><strong>Migrate DB</strong></td>
+        <td><code>pnpm db:migrate</code></td>
+        <td>Applies Drizzle SQL migrations to PostgreSQL.</td>
+      </tr>
+      <tr>
+        <td><strong>Seed Data</strong></td>
+        <td><code>pnpm db:seed</code></td>
+        <td>Populates 5 subjects, 5 students, and 6 sample enrollments.</td>
+      </tr>
+      <tr>
+        <td><strong>Terminal Inspect</strong></td>
+        <td><code>pnpm db:inspect</code></td>
+        <td>Prints ASCII tables of subjects, students, and enrollments in 1s.</td>
+      </tr>
+      <tr>
+        <td><strong>Drizzle Studio</strong></td>
+        <td><code>pnpm db:studio</code></td>
+        <td>Opens visual web dashboard at <code>https://local.drizzle.studio</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Endpoint & Status Codes Matrix</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Method & Path</th>
+        <th>Success Status</th>
+        <th>Error Statuses</th>
+        <th>Key Query / Protection</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-get">GET</span> <code>/students</code></td>
+        <td><code>200 OK</code></td>
+        <td><code>400</code></td>
+        <td>Single joined query (students ⋈ enrollments ⋈ subjects) with <code>selectDistinctOn</code>. Zero N+1.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span> <code>/students</code></td>
+        <td><code>201 Created</code></td>
+        <td><code>400</code></td>
+        <td>Validates name non-empty via Zod, inserts student, returns UUID.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-del">DELETE</span> <code>/students/:id</code></td>
+        <td><code>204 No Content</code></td>
+        <td><code>400, 404</code></td>
+        <td>Deletes student record; cascade deletes associated enrollments in DB.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-post">POST</span> <code>/students/:id/enroll</code></td>
+        <td><code>201 Created</code></td>
+        <td><code>400, 404, 409</code></td>
+        <td>Catches Postgres code <code>23505</code> on composite PK; returns 409 Conflict. Race-condition safe.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span> <code>/students/:id</code></td>
+        <td><code>200 OK</code></td>
+        <td><code>400, 404</code></td>
+        <td>Drizzle relational query (<code>with: { enrollments: { with: { subject } } }</code>). Zero N+1.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span> <code>/subjects</code></td>
+        <td><code>200 OK</code></td>
+        <td><code>500</code></td>
+        <td>Lists all academic subjects alphabetically for frontend selectors.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-get">GET</span> <code>/health</code></td>
+        <td><code>200 OK</code></td>
+        <td>—</td>
+        <td>Fastify health check returning <code>{ status: "ok", timestamp }</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Error Classes & HTTP Status Mapping</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Error Class / Code</th>
+        <th>HTTP Status</th>
+        <th>Trigger Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>ValidationError</code> / <code>ZodError</code></td>
+        <td><code>400 Bad Request</code></td>
+        <td>Payload schema violation (empty name, invalid UUID, grade not in A-F, year &lt; 1990).</td>
+      </tr>
+      <tr>
+        <td><code>NotFoundError</code></td>
+        <td><code>404 Not Found</code></td>
+        <td>Student or Subject ID does not exist in the database.</td>
+      </tr>
+      <tr>
+        <td><code>ConflictError</code> / <code>23505</code></td>
+        <td><code>409 Conflict</code></td>
+        <td>Duplicate enrollment for the same student, subject, and academic year.</td>
+      </tr>
+      <tr>
+        <td><code>InternalServerError</code></td>
+        <td><code>500 Internal Error</code></td>
+        <td>Unexpected unhandled runtime exceptions.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center; margin-top: 20px; font-size: 8pt; color: #94a3b8;">
+    Student Enrollment System — Tissoura.ai Take-Home Deliverable & Interview Masterclass
+  </div>
+
+</body>
+</html>
