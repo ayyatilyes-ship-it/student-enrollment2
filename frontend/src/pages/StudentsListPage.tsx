@@ -84,18 +84,10 @@ export const StudentsListPage: React.FC<StudentsListPageProps> = ({ onSelectStud
         </div>
 
         <div className="stat-card">
-          <div className="stat-icon stat-icon-green">⚡</div>
+          <div className="stat-icon stat-icon-green">🎓</div>
           <div className="stat-info">
-            <h3 style={{ color: "#34d399", fontSize: "1.2rem" }}>Fastify + Drizzle</h3>
-            <p>Zero N+1 Engine</p>
-          </div>
-        </div>
-
-        <div className="stat-card">
-          <div className="stat-icon stat-icon-amber">🛡️</div>
-          <div className="stat-info">
-            <h3 style={{ color: "#fbbf24", fontSize: "1.2rem" }}>ACID Safe</h3>
-            <p>Composite PK Defense</p>
+            <h3>{new Date().getFullYear()}</h3>
+            <p>Academic Year</p>
           </div>
         </div>
       </div>
