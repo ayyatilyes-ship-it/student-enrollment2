@@ -59,11 +59,11 @@ export function errorHandler(
     });
   }
 
-  // 4. Fastify Built-in Request Validation Errors
-  if ("validation" in error && error.statusCode === 400) {
-    return reply.status(400).send({
-      statusCode: 400,
-      error: "ValidationError",
+  // 4. Fastify Built-in Request / Client Errors (e.g. 400 Bad Request, Content-Type errors)
+  if ("statusCode" in error && typeof error.statusCode === "number" && error.statusCode >= 400 && error.statusCode < 500) {
+    return reply.status(error.statusCode).send({
+      statusCode: error.statusCode,
+      error: error.name || "ClientError",
       message: error.message,
     });
   }
