@@ -1,5 +1,6 @@
 import React from "react";
 import { Student } from "../types/index.js";
+import { Avatar } from "./Avatar.js";
 
 interface StudentsTableProps {
   students: Student[];
@@ -18,16 +19,23 @@ export const StudentsTable: React.FC<StudentsTableProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="table-container" style={{ padding: "3rem", textAlign: "center", color: "#64748b" }}>
-        Loading students...
+      <div className="table-container" style={{ padding: "4rem 2rem", textAlign: "center", color: "#94a3b8" }}>
+        <div style={{ fontSize: "2rem", marginBottom: "0.75rem", animation: "spin 1.5s linear infinite", display: "inline-block" }}>
+          ⚡
+        </div>
+        <p style={{ fontWeight: 600 }}>Loading student directory...</p>
       </div>
     );
   }
 
   if (students.length === 0) {
     return (
-      <div className="table-container" style={{ padding: "3rem", textAlign: "center", color: "#64748b" }}>
-        No students found matching your criteria.
+      <div className="table-container" style={{ padding: "4rem 2rem", textAlign: "center" }}>
+        <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>🔍</div>
+        <h3 style={{ color: "#f8fafc", marginBottom: "0.25rem", fontSize: "1.1rem" }}>No matching students found</h3>
+        <p style={{ color: "#64748b", fontSize: "0.85rem" }}>
+          Try resetting your subject or grade filters to see all enrolled students.
+        </p>
       </div>
     );
   }
@@ -37,39 +45,70 @@ export const StudentsTable: React.FC<StudentsTableProps> = ({
       <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Student ID</th>
-            <th>Registered</th>
+            <th>Student</th>
+            <th>ID & Identifiers</th>
+            <th>Registration Date</th>
             <th style={{ textAlign: "right" }}>Actions</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student) => (
             <tr key={student.id}>
-              <td style={{ fontWeight: 600 }}>{student.name}</td>
-              <td style={{ fontFamily: "monospace", fontSize: "0.8rem", color: "#64748b" }}>
-                {student.id}
+              <td>
+                <div className="student-name-cell">
+                  <Avatar name={student.name} size="sm" />
+                  <div>
+                    <div style={{ fontWeight: 700, color: "#f8fafc", fontSize: "0.92rem" }}>
+                      {student.name}
+                    </div>
+                    <div style={{ color: "#64748b", fontSize: "0.75rem" }}>
+                      Active Student
+                    </div>
+                  </div>
+                </div>
               </td>
-              <td>{new Date(student.createdAt).toLocaleDateString()}</td>
+              <td>
+                <code
+                  style={{
+                    color: "#94a3b8",
+                    background: "rgba(15, 23, 42, 0.6)",
+                    fontSize: "0.75rem",
+                    border: "1px solid rgba(255, 255, 255, 0.08)",
+                  }}
+                  title={student.id}
+                >
+                  {student.id.slice(0, 8)}...{student.id.slice(-6)}
+                </code>
+              </td>
+              <td style={{ color: "#cbd5e1", fontSize: "0.85rem" }}>
+                {new Date(student.createdAt).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </td>
               <td style={{ textAlign: "right" }}>
-                <div style={{ display: "inline-flex", gap: "0.5rem" }}>
+                <div style={{ display: "inline-flex", gap: "0.4rem" }}>
                   <button
                     className="btn btn-outline btn-sm"
                     onClick={() => onSelectStudent(student)}
+                    title="View student profile & enrolled subjects"
                   >
-                    View Details
+                    <span>👁</span> Details
                   </button>
                   <button
                     className="btn btn-primary btn-sm"
                     onClick={() => onEnrollStudent(student)}
+                    title="Enroll in a subject"
                   >
-                    + Enroll
+                    <span>+</span> Enroll
                   </button>
                   <button
                     className="btn btn-danger btn-sm"
                     onClick={() => onDeleteStudent(student)}
+                    title="Delete student record"
                   >
-                    Delete
+                    <span>🗑</span>
                   </button>
                 </div>
               </td>

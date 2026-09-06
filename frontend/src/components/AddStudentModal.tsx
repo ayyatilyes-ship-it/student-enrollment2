@@ -19,7 +19,7 @@ export const AddStudentModal: React.FC<AddStudentModalProps> = ({ isOpen, onClos
     setErrorMessage(null);
 
     if (!name.trim()) {
-      setErrorMessage("Student name is required");
+      setErrorMessage("Student name is required and cannot be empty.");
       return;
     }
 
@@ -35,13 +35,20 @@ export const AddStudentModal: React.FC<AddStudentModalProps> = ({ isOpen, onClos
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-title">Add New Student</h2>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
+          <div style={{ fontSize: "1.5rem" }}>👤</div>
+          <h2 className="modal-title" style={{ marginBottom: 0 }}>Register New Student</h2>
+        </div>
 
-        {errorMessage && <div className="error-banner">{errorMessage}</div>}
+        {errorMessage && (
+          <div className="error-banner">
+            <span>⚠️</span> {errorMessage}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="student-name">Full Name</label>
+            <label htmlFor="student-name">Student Full Name</label>
             <input
               id="student-name"
               className="input"
@@ -52,6 +59,9 @@ export const AddStudentModal: React.FC<AddStudentModalProps> = ({ isOpen, onClos
               onChange={(e) => setName(e.target.value)}
               autoFocus
             />
+            <span style={{ fontSize: "0.75rem", color: "#64748b", marginTop: "0.25rem", display: "block" }}>
+              Must be a valid non-empty name (validated via Zod schema).
+            </span>
           </div>
 
           <div className="modal-actions">
@@ -68,7 +78,7 @@ export const AddStudentModal: React.FC<AddStudentModalProps> = ({ isOpen, onClos
               className="btn btn-primary"
               disabled={createStudentMutation.isPending}
             >
-              {createStudentMutation.isPending ? "Adding..." : "Add Student"}
+              {createStudentMutation.isPending ? "Creating..." : "Save Student"}
             </button>
           </div>
         </form>
