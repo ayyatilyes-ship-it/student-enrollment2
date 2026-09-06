@@ -6,3 +6,4 @@ coverage
 *.log
 frontend/dist
 frontend/node_modules
+*.pdf
